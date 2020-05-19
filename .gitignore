@@ -348,3 +348,12 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# Entorno virtual
+.env
+
+# Cache de visual
+.vscode
+
+# Teoria del tema
+teoria_admc
