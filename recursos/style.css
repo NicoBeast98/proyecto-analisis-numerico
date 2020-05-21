@@ -1,0 +1,19 @@
+body {
+    background-image: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("fondo.jpg");
+    }
+#display{
+    height: 650px;
+    width: 900px;
+    background: antiquewhite;
+    margin: 20px auto;
+    border: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 10px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#botonesBase{
+    height: 100;
+    text-align: center;
+    margin-top: ;
+    padding: 5px;
+}
+/* Bajar botones */
