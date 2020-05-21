@@ -4,13 +4,15 @@ import numpy as np
 
 class Aproximador():
 
-    def __init__(self, puntos_x, puntos_y, base, peso):
-        self.puntos_x = puntos_x  # Intervalo de x
-        self.puntos_y = puntos_y  # Intervalo de f(x)
-        self.base = base    # Base por la que me aproximo
-        self.peso = peso    # Funcion peso
+    def __init__(self, datos):
+        self.puntos_x = datos['puntos_x']  # Intervalo de x
+        self.puntos_y = datos['puntos_y']  # Intervalo de f(x)
+        self.base = datos['base']    # Base por la que me aproximo
+        self.peso = datos['peso']    # Funcion peso
         self.coef = []
+        self.err = None
         self.sel
+        self.error
 
     # Producto escalar entre los puntos de 'x' y
     # a base dada.
@@ -32,13 +34,11 @@ class Aproximador():
                 mat_A[i][j] = self.producto_escalar(
                     self.base[i], self.base[j]
                     )
-        print(mat_A)
         mat_B = np.empty((rg))
         for i in range(rg):
             mat_B[i] = self.prod_esc_y(i)
         mat_A_inv = np.linalg.inv(mat_A)
         self.coef = np.matmul(mat_A_inv, mat_B)
-        print(mat_B)
     # <>
 
     # Realizar producto escalar entre los valores y de entrada
@@ -59,6 +59,7 @@ class Aproximador():
     # <>
 
     # Calculo de error en el metodo.
+    @property
     def error(self):
         f_2 = 0
         coefs = 0
@@ -67,7 +68,27 @@ class Aproximador():
         for j in range(len(self.coef)):
             coefs += self.coef[j]*self.prod_esc_y(j)
         err = (f_2 - coefs)**0.5
-        return err
+        self.err = err
+    # <>
+
+    # Gets de datos
+    def get_px(self):
+        return self.puntos_x
+
+    def get_py(self):
+        return self.puntos_y
+
+    def get_f_peso(self):
+        return self.peso
+
+    def get_base(self):
+        return self.base
+
+    def get_coef(self):
+        return self.coef
+
+    def get_error(self):
+        return self.err
     # <>
 
 
