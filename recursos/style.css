@@ -10,10 +10,15 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px 10px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-#botonesBase{
-    height: 100;
-    text-align: center;
-    margin-top: ;
-    padding: 5px;
+#base{
+    padding: 20px auto;
 }
-/* Bajar botones */
+#funcion{
+    top: 550px;
+    position: relative;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: whitesmoke;
+    height: 100px;
+    width: 200px;
+    border-radius: 10px;
+}
