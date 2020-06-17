@@ -10,7 +10,8 @@ class Aproximador():
         self.base = datos['base']    # Base por la que me aproximo
         self.peso = datos['peso']    # Funcion peso
         self.coef = []
-        self.err = None
+        self.err = 0
+        # Calculo todo
         self.sel
         self.error
 

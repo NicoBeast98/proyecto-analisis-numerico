@@ -95,8 +95,8 @@ anteriores:
         print(('Intervalo de x = [{i} , {f}]').format(
             i=aprox.puntos_x[0], f=aprox.puntos_x[len(aprox.puntos_x)-1]
         ))
-        print('coef = ', aprox.coef)
-        print('error = ', aprox.error())
+        print('coef = ', aprox.get_coef())
+        print('error = ', aprox.get_error())
         print('''
 Para usar la funcion aproximada ingrese el valor de x,
 para salir ingrese \'exit\'.
