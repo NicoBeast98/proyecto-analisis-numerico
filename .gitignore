@@ -357,3 +357,7 @@ MigrationBackup/
 
 # Teoria del tema
 teoria_admc
+
+# pythpn cache
+__pycache__
+.mypy_cache
