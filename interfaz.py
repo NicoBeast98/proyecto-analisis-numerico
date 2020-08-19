@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 import funciones as f
 from calculador import Aproximador
-import json
 import os
+import matplotlib.pyplot as plt
 
 
 class Menu():
@@ -94,6 +94,7 @@ Ingreso el conjunto de puntos de la funcion a aproximar:
         datos.update(puntos)
 
         aprox = Aproximador(datos)
+        aprox
         print('puntos en y =', aprox.puntos_y)
         print(('Intervalo de x = [{i} , {f}]').format(
             i=aprox.puntos_x[0], f=aprox.puntos_x[len(aprox.puntos_x)-1]
@@ -104,6 +105,7 @@ Ingreso el conjunto de puntos de la funcion a aproximar:
 Para usar la funcion aproximada ingrese el valor de x,
 para salir ingrese \'exit\'.
         ''')
+        self.graph(aprox)
         while True:
             valor = input('x = ')
             if valor == 'exit':
@@ -156,6 +158,10 @@ para salir ingrese \'exit\'.
                 if val.isalpha():
                     return False
             return True
+    
+    def graph(self, aprox):
+        coefs = aprox.get_coef()
+        print(coefs)
 
 if __name__ == "__main__":
     m = Menu()
