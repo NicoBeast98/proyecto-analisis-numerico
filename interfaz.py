@@ -3,6 +3,7 @@ import funciones as f
 from calculador import Aproximador
 import os
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 class Menu():
@@ -24,7 +25,7 @@ las opciones disponibles son:
 \t~ Seno >> sen(x)
 
 Cuando termine de ingresar las funciones de la base
-ingrese \'done\'
+ingrese \'listo\'
         ''')
         base = self.selecion_funcion()
 # Funcion Peso
@@ -73,9 +74,9 @@ Ingreso el conjunto de puntos de la funcion a aproximar:
     def selecion_funcion(self):
         temp = ''
         base = []
-        while temp != 'done':
+        while True:
             temp = input('f(x) >> ')
-            if temp == 'done':
+            if temp == 'listo':
                 break
             val = self.validate(temp)
             if val == 'bad_input':
@@ -86,7 +87,7 @@ Ingreso el conjunto de puntos de la funcion a aproximar:
         return base
 
     def aproximar(self, base, peso, puntos):
-        # os.system("clear")
+        os.system("clear")
         datos = {
             'base': base,
             'peso': peso,
@@ -95,20 +96,18 @@ Ingreso el conjunto de puntos de la funcion a aproximar:
 
         aprox = Aproximador(datos)
         aprox
-        print('puntos en y =', aprox.puntos_y)
-        print(('Intervalo de x = [{i} , {f}]').format(
-            i=aprox.puntos_x[0], f=aprox.puntos_x[len(aprox.puntos_x)-1]
-        ))
-        print('coef = ', aprox.get_coef())
-        print('error = ', aprox.get_error())
+        print('Puntos en y = ', aprox.puntos_y)
+        print('Puntos en x = ', aprox.puntos_x)
+        print('Coeficientes = ', aprox.get_coef())
+        print('Error = ', aprox.get_error())
         print('''
 Para usar la funcion aproximada ingrese el valor de x,
-para salir ingrese \'exit\'.
+para salir ingrese un caracter distinto de un numero.
         ''')
         self.graph(aprox)
         while True:
             valor = input('x = ')
-            if valor == 'exit':
+            if self.numtype(valor) is False:
                 break
             try:
                 fx = aprox.aprox_funtion(float(valor))
@@ -123,7 +122,7 @@ para salir ingrese \'exit\'.
         for n in range(0,dots*2):
             if n%2 == 0:
                 while True:
-                    var = input('x = ')
+                    var = input(f'x_{int(n/2)} = ')
                     if self.numtype(var):
                         puntos['puntos_x'].append(float(var))
                         break
@@ -131,7 +130,7 @@ para salir ingrese \'exit\'.
                         print('Ingreso erroneo, intente de nuevo')
             else:
                 while True:
-                    var = input('y = ')
+                    var = input(f'y(x_{int(n/2)}) = ')
                     if self.numtype(var):
                         puntos['puntos_y'].append(float(var))
                         break
@@ -160,8 +159,8 @@ para salir ingrese \'exit\'.
             return True
     
     def graph(self, aprox):
-        coefs = aprox.get_coef()
-        print(coefs)
+        x = np.arange(aprox.puntos_x[0],aprox.puntos_x[len(aprox.puntos_x)-1], 100)
+        plt.plot(x, aprox.aprox_funtion(x))
 
 if __name__ == "__main__":
     m = Menu()
