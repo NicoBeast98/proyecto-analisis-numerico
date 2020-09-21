@@ -29,17 +29,20 @@ class Aproximador():
     @property
     def sel(self):
         rg = len(self.base)
-        mat_A = np.empty((rg, rg))
+        mat_A = np.zeros((rg, rg))
         for i in range(rg):
             for j in range(rg):
                 mat_A[i][j] = self.producto_escalar(
                     self.base[i], self.base[j]
                     )
-        mat_B = np.empty((rg))
+        mat_B = np.zeros((rg))
         for i in range(rg):
             mat_B[i] = self.prod_esc_y(i)
         mat_A_inv = np.linalg.inv(mat_A)
         self.coef = np.matmul(mat_A_inv, mat_B)
+        # print('matA =\n', mat_A)
+        # print('mat A Inv =\n', mat_A_inv)
+        # print('mat B =\n', mat_B)
     # <>
 
     # Realizar producto escalar entre los valores y de entrada
@@ -89,7 +92,8 @@ class Aproximador():
         return self.coef
 
     def get_error(self):
-        return self.err
+        err = f'{round(self.err*100, 2)} %'
+        return err
     # <>
 
 

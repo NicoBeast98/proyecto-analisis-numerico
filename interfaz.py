@@ -99,21 +99,26 @@ Ingreso el conjunto de puntos de la funcion a aproximar:
         print('Puntos en y = ', aprox.puntos_y)
         print('Puntos en x = ', aprox.puntos_x)
         print('Coeficientes = ', aprox.get_coef())
-        print('Error = ', aprox.get_error())
-        print('''
+        print('Error porcentual : ', aprox.get_error())
+        print(f'''
 Para usar la funcion aproximada ingrese el valor de x,
 para salir ingrese un caracter distinto de un numero.
+
+Intervalo valido : [{aprox.puntos_x[0]}, {aprox.puntos_x[-1]}]
         ''')
-        self.graph(aprox)
-        while True:
-            valor = input('x = ')
-            if self.numtype(valor) is False:
-                break
-            try:
-                fx = aprox.aprox_funtion(float(valor))
-            except():
-                raise Exception('Ingreso erroneo')
-            print(('f*({x}) = {f}').format(x=valor, f=fx))
+        pid = os.fork()
+        if pid == 0:
+            self.graph(aprox)
+        else:
+            while True:
+                valor = input('x = ')
+                if self.numtype(valor) is False:
+                    break
+                try:
+                    fx = aprox.aprox_funtion(float(valor))
+                except():
+                    raise Exception('Ingreso erroneo')
+                print(('f*({x}) = {f}').format(x=valor, f=fx))
     
     def input_puntos(self):
         print('Ingrese \'done\' cuando termine')
@@ -159,8 +164,19 @@ para salir ingrese un caracter distinto de un numero.
             return True
     
     def graph(self, aprox):
-        x = np.arange(aprox.puntos_x[0],aprox.puntos_x[len(aprox.puntos_x)-1], 100)
-        plt.plot(x, aprox.aprox_funtion(x))
+        x = []
+        y = []
+        for n in np.arange(aprox.puntos_x[0], aprox.puntos_x[-1], 0.01):
+            N = round(n,5)
+            x.append(N)
+            y.append(round(aprox.aprox_funtion(N), 5))
+        plt.plot(aprox.puntos_x, aprox.puntos_y, 'o')
+        plt.plot(x, y)
+        plt.title('Funcion aproximada')
+        plt.xlabel('x')
+        plt.ylabel('f*(x)')
+        plt.grid()
+        plt.show()
 
 if __name__ == "__main__":
     m = Menu()
