@@ -1,0 +1,18 @@
+Alumno: Nicolas Aldeco. Legajo: 58032
+
+Librerias necesarias para ejecucion:
+- numpy
+- os
+- matplotlib.pyplot
+
+Uso de la herramienta:
+1) En una terminal corremos el script "interfaz.py" con Python 3 '$ python3 interfaz.py'.
+2) Selecionamos las funciones de la base, dentro de las funciones disponibles 'f(x)>> ln(x)'.
+3) Una vez terminamos de ingresar las funciones, ingresamos la palabra listo. 'f(x)>> listo'.
+4) Debemos ingresar a continuacion la funcion peso 'w(x) >> 1'.
+5) Ahora que cantidad de puntos tenemos para hacer la aproximacion 'Cuantos pares de puntos? >> 5'
+6) Vamos ingresando el conjunto de puntos tal que, por ejemplo: el punto (x=1, y=6) >> 'x_0 = 1' luego 'y(x_0)= 6'.
+7) En una ventana aprate de la terminal vemos a tener una grafica con los puntos de aproximacion
+y la funcion que generamos a partir de la base y los puntos. Ademas en la terminal podremos ingresar valores
+en la funcion aproximada 'x = 1.5' >> 'f*(1.5) = 3.749'.
+8) Para salir ingrese un valor distinto de un numero en la terminal.

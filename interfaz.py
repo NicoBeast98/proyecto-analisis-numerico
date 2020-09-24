@@ -13,7 +13,7 @@ class Menu():
         print('''
 \tAproximador Minimos Cuadrados
 Ingrese la base por la que aproximar los puntos,
-debe ingresar cada funcion como se muestra
+debe ingresar cada funcion como se muestra,
 las opciones disponibles son:
 \t~ Unidad >> 1
 \t~ Identidad >> x
